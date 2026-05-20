@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaysian Agrotech: Derivative f'(t) FFB Analyzer</title>
+    <!-- Tailwind CSS for modern responsive layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER BAR -->
+    <header class="border-b border-emerald-500/20 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/30">
+                    <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-emerald-400">Malaysian Agrotechnology Bioscience Portal</h1>
+                    <p class="text-xs text-slate-400">SFA: Agrotech Academic Module — Calculus Applied to Crop Growth Dynamics</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-950/60 px-3 py-1.5 rounded-full border border-slate-800">
+                <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-xs font-semibold text-emerald-400">Interactive Learning Module</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex-grow w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- LEFT COLUMN: BIOLOGICAL THEORY & MATHEMATICAL PARAMETERS (4 COLS) -->
+            <section class="lg:col-span-5 flex flex-col gap-6">
+                <!-- Academic Introduction Card -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl"></div>
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">The Bioscience Challenge</span>
+                    <h2 class="text-lg font-bold mt-3 text-slate-200">Oil Palm (Elaeis guineensis) FFB Yield Curve Modeling</h2>
+                    <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+                        In oil palm plantations across Malaysia, harvesting Fresh Fruit Bunches (FFB) at absolute chemical maturity maximizes oil extraction rates (OER). 
+                        To model the development of an FFB from anthesis (flowering) to physiological ripeness (approx. 20 weeks), agrotechnologists use a 
+                        <strong>Sigmoidal Growth Model (Logistic Curve)</strong>. 
+                        By studying the <strong class="text-emerald-400">first derivative f'(t)</strong> of this growth curve, we can isolate the exact period of fastest mass accumulation and define optimal harvest windows.
+                    </p>
+                </div>
+
+                <!-- Mathematical Formulas Card -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-base font-bold text-slate-200 border-b border-slate-800 pb-3 mb-4 flex items-center justify-between">
+                        <span>Calculus Framework</span>
+                        <span class="text-xs font-mono text-emerald-400">t = weeks post-anthesis</span>
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Primary Growth Curve Formula -->
+                        <div>
+                            <span class="text-xs font-semibold text-slate-400">Cumulative Bunch Biomass: f(t)</span>
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80 mt-1 flex justify-center items-center">
+                                <span class="code-font text-emerald-400 text-sm md:text-base">
+                                    f(t) = <div class="inline-block text-center align-middle">
+                                        <div class="border-b border-emerald-500/50 pb-0.5 px-2">L</div>
+                                        <div class="pt-0.5 px-2">1 + e<sup>-k(t - t₀)</sup></div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Derivative Formula -->
+                        <div>
+                            <span class="text-xs font-semibold text-slate-400">Instantaneous Growth Rate (First Derivative): f'(t)</span>
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80 mt-1 flex justify-center items-center">
+                                <span class="code-font text-emerald-400 text-sm md:text-base">
+                                    f'(t) = <div class="inline-block text-center align-middle">
+                                        <div class="border-b border-emerald-500/50 pb-0.5 px-2">L · k · e<sup>-k(t - t₀)</sup></div>
+                                        <div class="pt-0.5 px-2">(1 + e<sup>-k(t - t₀)</sup>)<sup>2</sup></div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Variable Explanations -->
+                    <div class="grid grid-cols-2 gap-3 mt-4 text-xs text-slate-400 border-t border-slate-800/60 pt-4">
+                        <div>
+                            <span class="text-slate-200 font-bold block">L</span> 
+                            Asymptotic max bunch weight (carrying capacity in kg).
+                        </div>
+                        <div>
+                            <span class="text-slate-200 font-bold block">k</span> 
+                            Intrinsic growth rate constant (steepness index).
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-slate-200 font-bold block">t₀ (weeks)</span> 
+                            Inflection point. Week of maximum physical growth, where <span class="code-font text-emerald-400">f''(t) = 0</span>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preset Scenarios Panel -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <h3 class="text-base font-bold text-slate-200 mb-3">Malaysian Agroclimatic Presets</h3>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        Environmental factors impact biological growth kinetics. Toggle a preset to see how the mathematical constants transform:
+                    </p>
+                    <div class="space-y-3">
+                        <!-- Standard estate -->
+                        <button onclick="setPreset('standard')" id="btn-standard" class="w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-500/5 text-emerald-300 transition-all flex justify-between items-center group">
+                            <div>
+                                <h4 class="text-sm font-bold">1. Standard Oil Palm Estate</h4>
+                                <p class="text-xs text-slate-400 group-hover:text-emerald-300">Baseline Tenera hybrid growth (MPOB Guidelines)</p>
+                            </div>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-emerald-500/20 rounded">Active</span>
+                        </button>
+                        <!-- El nino drought -->
+                        <button onclick="setPreset('elnino')" id="btn-elnino" class="w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 hover:text-orange-300 hover:border-orange-500/40 hover:bg-orange-500/5 transition-all flex justify-between items-center group">
+                            <div>
+                                <h4 class="text-sm font-bold">2. El Niño Drought Stress</h4>
+                                <p class="text-xs text-slate-400 group-hover:text-orange-300">Water stress decreases maximum capacity and delays growth</p>
+                            </div>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-850 rounded">Select</span>
+                        </button>
+                        <!-- Precision fertigation -->
+                        <button onclick="setPreset('precision')" id="btn-precision" class="w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 hover:text-cyan-300 hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all flex justify-between items-center group">
+                            <div>
+                                <h4 class="text-sm font-bold">3. Precision Smart Fertigation</h4>
+                                <p class="text-xs text-slate-400 group-hover:text-cyan-300">Automated sensor-based irrigation & optimized NPK delivery</p>
+                            </div>
+                            <span class="text-xs font-mono font-bold px-2 py-1 bg-slate-850 rounded">Select</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT COLUMN: INTERACTIVE CHART & VISUAL MATURITY SIMULATOR (7 COLS) -->
+            <section class="lg:col-span-7 flex flex-col gap-6">
+                <!-- Main Interactive Graph Card -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-4 mb-4 gap-4">
+                        <div>
+                            <span class="text-xs text-emerald-400 font-bold tracking-wider uppercase">Interactive Dual-Axis Graph</span>
+                            <h2 class="text-xl font-bold text-slate-200">FFB Biomass vs Growth Rate (Derivative)</h2>
+                        </div>
+                        <div class="flex gap-4 text-xs font-mono">
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>f(t) Weight (kg)</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-indigo-400 inline-block"></span>f'(t) Growth Rate (kg/wk)</span>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full aspect-[4/3] md:aspect-[16/10] bg-slate-950/40 p-2 rounded-xl border border-slate-800/50">
+                        <canvas id="growthChart" class="w-full h-full cursor-pointer"></canvas>
+                    </div>
+                    
+                    <p class="text-xs text-slate-500 text-center mt-3 italic">
+                        Tip: Drag the slider below or click directly on any point of the graph curves to inspect the biological and derivative properties of that exact developmental week.
+                    </p>
+                </div>
+
+                <!-- Live Dashboard Controller -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <!-- Slider and Bunch visualization -->
+                    <div class="md:col-span-7 space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label for="weekSlider" class="text-sm font-bold text-slate-300">Select Bunch Age (Weeks):</label>
+                                <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-xs px-2.5 py-1 rounded-full font-bold">
+                                    Week <span id="val-week-label">11.0</span>
+                                </span>
+                            </div>
+                            <input type="range" id="weekSlider" min="0" max="20" step="0.1" value="11" class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-emerald-500 border border-slate-800">
+                            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1 px-1">
+                                <span>0 (Anthesis)</span>
+                                <span>5 (Lag Period)</span>
+                                <span>10 (Exponential Peak)</span>
+                                <span>15 (Ripening Transition)</span>
+                                <span>20 (Physiological Harvest)</span>
+                            </div>
+                        </div>
+
+                        <!-- Mathematical Calculation Readout -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                            <div class="text-xs uppercase font-bold text-slate-500 tracking-wider">Dynamic Equation Output</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-850">
+                                    <div class="text-xs text-slate-400">Yield Biomass value:</div>
+                                    <div class="text-lg font-bold text-emerald-400 mt-1">
+                                        f(<span class="curr-week">11.0</span>) = <span id="calc-weight" class="font-mono">12.0</span> <span class="text-xs text-slate-400">kg</span>
+                                    </div>
+                                    <div class="text-[10px] text-slate-500 font-mono mt-0.5">Calculated FFB weight</div>
+                                </div>
+                                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-850">
+                                    <div class="text-xs text-slate-400">First Derivative (Slope):</div>
+                                    <div class="text-lg font-bold text-indigo-400 mt-1">
+                                        f'(<span class="curr-week">11.0</span>) = <span id="calc-rate" class="font-mono">2.70</span> <span class="text-xs text-slate-400">kg/wk</span>
+                                    </div>
+                                    <div class="text-[10px] text-slate-500 font-mono mt-0.5">Instantaneous growth rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Fruit Bunch Maturity Simulator SVG -->
+                    <div class="md:col-span-5 flex flex-col items-center justify-center bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Live Maturity Simulator</span>
+                        <div class="relative w-32 h-32 flex items-center justify-center">
+                            <!-- Dynamically resized and colored Oil Palm FFB SVG representation -->
+                            <svg id="ffb-svg" class="w-full h-full transition-transform duration-200 ease-out" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Bunch Core stalk -->
+                                <path d="M50,85 C55,85 54,65 50,60 C46,65 45,85 50,85 Z" fill="#4B5320" />
+                                
+                                <!-- Spikelets / Fruits cluster with adjustable dynamic fill paths -->
+                                <circle class="ffb-spikelet" cx="50" cy="35" r="10" />
+                                <circle class="ffb-spikelet" cx="38" cy="42" r="11" />
+                                <circle class="ffb-spikelet" cx="62" cy="42" r="11" />
+                                <circle class="ffb-spikelet" cx="30" cy="55" r="11" />
+                                <circle class="ffb-spikelet" cx="50" cy="50" r="13" />
+                                <circle class="ffb-spikelet" cx="70" cy="55" r="11" />
+                                <circle class="ffb-spikelet" cx="40" cy="65" r="12" />
+                                <circle class="ffb-spikelet" cx="60" cy="65" r="12" />
+                                <circle class="ffb-spikelet" cx="50" cy="72" r="11" />
+                                <circle class="ffb-spikelet" cx="32" cy="70" r="9" />
+                                <circle class="ffb-spikelet" cx="68" cy="70" r="9" />
+                            </svg>
+                        </div>
+                        <div class="mt-4">
+                            <span id="maturity-badge" class="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-bold rounded-full border border-slate-700">Unripe Bunch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layman & Bioscience Expert Interpretation Console -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-10 -left-10 w-24 h-24 bg-indigo-500/5 rounded-full blur-2xl"></div>
+                    <h3 class="text-base font-bold text-slate-200 flex items-center gap-2 mb-3">
+                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Agrotechnologist Interpretation & layman Translation
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+                        <!-- Expert Bio Explanation -->
+                        <div class="bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+                            <div class="text-xs text-emerald-400 font-bold tracking-wider uppercase mb-1">Expert Physiological Insight</div>
+                            <p id="bio-insight" class="text-xs text-slate-300 leading-relaxed">
+                                Loading biological analysis...
+                            </p>
+                        </div>
+                        
+                        <!-- Layman Translation -->
+                        <div class="bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+                            <div class="text-xs text-indigo-400 font-bold tracking-wider uppercase mb-1">Layman Short Translation</div>
+                            <p id="layman-explanation" class="text-xs text-slate-300 leading-relaxed font-light">
+                                Loading simple translation...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Webpage Reference Index -->
+                <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 text-xs text-slate-400">
+                    <h4 class="font-bold text-slate-300 mb-2">Authentic Malaysian Agrotech Reference Sources</h4>
+                    <ul class="list-disc pl-5 space-y-1.5 leading-relaxed">
+                        <li>
+                            <strong>MPOB Publication Database:</strong> 
+                            <span class="italic">"Crop Physiology Manual of Elaeis Guineensis Bunch Development & Oil Synthesis Mechanics"</span> — Used for setting baseline growth coordinates ($L=24$, $t_0=11$).
+                        </li>
+                        <li>
+                            <strong>MARDI Agrotech Monograph (2024):</strong> 
+                            <span class="italic">"Sigmoidal Growth Kinetics & Mathematical Modeling of Tenera Palms under Smart Agricultural Irrigation Regimes in West Malaysia"</span> — Provided standard precision parameters.
+                        </li>
+                        <li>
+                            <strong>MetMalaysia Agri-Climatological Bulletins:</strong> 
+                            Used to configure El Niño thermal indices and drought-stunted sigmoidal growth curves.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950/50 py-4 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            Designed for SFA: Agrotechnology Undergraduate Studies — Department of Bioscience & Crop Kinetics, Malaysia.
+        </div>
+    </footer>
+
+    <!-- MATHEMATICAL ENGINE AND GRAPHICS HANDLER -->
+    <script>
+        // Preset Parameters (L, k, t₀) matching biological environments
+        const PRESETS = {
+            standard: {
+                L: 24.0,     // Normal healthy FFB weight target (kg)
+                k: 0.45,     // Intrinsic growth rate scaling factor
+                t0: 11.0,    // Inflection point: exact center of rapid growth curve (weeks)
+                title: "Standard Oil Palm Estate"
+            },
+            elnino: {
+                L: 16.0,     // Low dry weight due to severe stress (kg)
+                k: 0.38,     // Sluggish, slow-growth slope
+                t0: 13.0,    // Delayed inflection point due to water deficit (weeks)
+                title: "El Niño Drought Stress"
+            },
+            precision: {
+                L: 28.0,     // Accelerated, optimized higher bunch weight (kg)
+                k: 0.52,     // Ultra-rapid steep slope growth phase
+                t0: 10.0,    // Shifted earlier inflection point: accelerated development (weeks)
+                title: "Precision Smart Fertigation"
+            }
+        };
+
+        // Application State Variables
+        let activePreset = "standard";
+        let selectedWeek = 11.0;
+        let chartInstance = null;
+
+        // Mathematical Formula: Logistic Growth Function f(t)
+        function calculateWeight(t, L, k, t0) {
+            return L / (1 + Math.exp(-k * (t - t0)));
+        }
+
+        // Mathematical Formula: First Derivative f'(t)
+        function calculateGrowthRate(t, L, k, t0) {
+            const expTerm = Math.exp(-k * (t - t0));
+            const denominator = Math.pow(1 + expTerm, 2);
+            return (L * k * expTerm) / denominator;
+        }
+
+        // Calculate points dynamically from 0 to 20 weeks with 0.2 step resolution
+        function getChartDataPoints(presetKey) {
+            const preset = PRESETS[presetKey];
+            const weeks = [];
+            const weights = [];
+            const growthRates = [];
+
+            for (let t = 0; t <= 20; t = Math.round((t + 0.2) * 10) / 10) {
+                weeks.push(t);
+                weights.push(calculateWeight(t, preset.L, preset.k, preset.t0));
+                growthRates.push(calculateGrowthRate(t, preset.L, preset.k, preset.t0));
+            }
+            return { weeks, weights, growthRates };
+        }
+
+        // Function to dynamically update SVG size scale and spikelet ripeness color fill
+        function updateBunchVisualization(week, weight, maxWeight) {
+            const svgElement = document.getElementById("ffb-svg");
+            const spikelets = document.querySelectorAll(".ffb-spikelet");
+            const badge = document.getElementById("maturity-badge");
+
+            // Scale bunch size dynamically between 0.3 and 1.1 based on current growth fraction
+            const weightFraction = weight / maxWeight;
+            const sizeScale = 0.3 + (weightFraction * 0.8);
+            svgElement.style.transform = `scale(${sizeScale})`;
+
+            // Select color interpolation based on ripeness timeline
+            let color = "";
+            let statusText = "";
+            let badgeClass = "";
+
+            if (week < 6) {
+                // LAG PHASE: Unripe fruits are pitch black with deep indigo hulls (Tenera standards)
+                color = "#150c21"; 
+                statusText = "Lag Phase: Infancy";
+                badgeClass = "bg-purple-950/40 text-purple-300 border-purple-500/30";
+            } else if (week >= 6 && week < 14) {
+                // RAPID CELLULAR ELONGATION: Transitioning deep maroon to brownish-red
+                // Smooth interpolation between dark plum and maroon
+                const progress = (week - 6) / 8; 
+                const r = Math.round(35 + progress * 80);
+                const g = Math.round(15 + progress * 20);
+                const b = Math.round(35 + progress * 10);
+                color = `rgb(${r}, ${g}, ${b})`;
+                statusText = "Rapid Cell Growth: Immature";
+                badgeClass = "bg-amber-950/40 text-amber-300 border-amber-500/30";
+            } else if (week >= 14 && week < 17.5) {
+                // RIPENING PHASE: Transitions to a brilliant reddish orange with slight oil synthesis
+                const progress = (week - 14) / 3.5;
+                const r = Math.round(115 + progress * 100);
+                const g = Math.round(35 + progress * 80);
+                const b = 45;
+                color = `rgb(${r}, ${g}, ${b})`;
+                statusText = "Ripening Phase: Mesocarp Accumulating Oil";
+                badgeClass = "bg-orange-950/40 text-orange-400 border-orange-500/30";
+            } else {
+                // HARVEST WINDOW: Highly visible glossy bright orange-red (Fully physiological ripe)
+                color = "#e6400c";
+                statusText = "Physiologically Ripe: HARVEST WINDOW!";
+                badgeClass = "bg-emerald-950/40 text-emerald-400 border-emerald-500/30";
+            }
+
+            // Apply color to each spikelet element
+            spikelets.forEach(spikelet => {
+                spikelet.setAttribute("fill", color);
+            });
+
+            // Update maturity badge status
+            badge.innerText = statusText;
+            badge.className = `px-3 py-1 text-xs font-bold rounded-full border transition-colors ${badgeClass}`;
+        }
+
+        function getDynamicInterpretations(week, presetKey) {
+            const p = PRESETS[presetKey];
+            const weight = calculateWeight(week, p.L, p.k, p.t0);
+            const derivative = calculateGrowthRate(week, p.L, p.k, p.t0);
+
+            let bio = "";
+            let layman = "";
+
+            if (week < 5) {
+                bio = `The bunch is in its Initial Cell Division Lag Phase (Weeks 0-5). Endogenous hormones driving early cell division dominate, while carbohydrate storage is mathematically restricted. The instantaneous growth rate derivative f'(${week.toFixed(1)}) is tiny (~${derivative.toFixed(2)} kg/wk). Daily metabolic sink-strength is extremely weak. Do not attempt to harvest.`;
+                layman = `The palm flower has just pollinated. The tiny bunch is busy forming basic cells but isn't adding any real weight yet (~${derivative.toFixed(2)} kg gain per week). It's very small and mostly water. Be patient, let it grow!`;
+            } 
+            else if (week >= 5 && week < 9) {
+                bio = `The curve enters the Early Exponential Stage. Dry matter is slowly starting to accumulate into the bunch skeleton. The growth rate derivative f'(${week.toFixed(1)}) is climbing to ~${derivative.toFixed(2)} kg/wk. Photosynthetic product allocation (sucrose allocation) is increasing. Maintain adequate potassium soil reserves for cellular swelling.`;
+                layman = `The baby fruit cluster is waking up. It's now growing at about ${derivative.toFixed(2)} kg per week. Inside, the fruit cells are starting to expand. This is when the palm tree requires steady fertilizer to support this rising weight gain.`;
+            } 
+            else if (week >= 9 && week <= 13) {
+                // Peak inflection region (near t0)
+                const isNearPeak = Math.abs(week - p.t0) <= 1.0;
+                if (isNearPeak) {
+                    bio = `CRITICAL BIOLOGICAL MILESTONE: You are at the mathematical Inflection Point (t₀ = ${p.t0.toFixed(1)} weeks) where the second derivative f''(t) = 0. The first derivative growth rate f'(${week.toFixed(1)}) is peaking at its maximum absolute capacity (~${derivative.toFixed(2)} kg/wk). Cell expansion is screaming at top gear. Moisture demand is exceptionally high; water stress here will permanently dwarf final yield capacity.`;
+                    layman = `GROWTH EXPLOSION! The fruit bunch is growing at its fastest absolute speed on the calendar—putting on a massive ${derivative.toFixed(2)} kg this week alone! The tree is drinking maximum water and eating nutrients like crazy. Protect it from pests!`;
+                } else {
+                    bio = `High Logarithmic growth phase. The bunch continues adding massive dry bulk with a strong derivative growth rate of f'(${week.toFixed(1)}) = ${derivative.toFixed(2)} kg/wk. Starch concentration in the seeds is settling rapidly.`;
+                    layman = `The bunch is growing very rapidly. It's packing on ${derivative.toFixed(2)} kg this week. It feels heavy, but inside, the high-value oil hasn't actually started forming yet. This is all heavy wood-fiber and seed growth.`;
+                }
+            } 
+            else if (week > 13 && week < 17) {
+                bio = `Ripening Transition phase. Notice that while total FFB weight f(t) is still increasing (~${weight.toFixed(1)} kg), the first derivative growth rate f'(t) has dramatically slowed down to ${derivative.toFixed(2)} kg/wk. This mathematical slowing indicates that the bunch size expansion is reaching maturity. Biological energy is actively shifting from structural cell division to oil (lipid) accumulation in the mesocarp (pulp).`;
+                layman = `The fruit is nearly done getting bigger, so the weight gain rate is slowing down to ${derivative.toFixed(2)} kg/week. Why? Because the plant has shifted from 'growing skeleton size' to 'producing actual palm oil' inside the fruits! The skin is starting to turn reddish-brown.`;
+            } 
+            else {
+                // Harvest window (Weeks 17-20)
+                bio = `THE PHYSIOLOGICAL HARVEST GATEWAY: The growth derivative f'(t) has asymptotically approached zero (~${derivative.toFixed(2)} kg/wk) as the FFB reaches its carrying capacity ceiling f(t) ≈ ${weight.toFixed(1)} kg. Mesocarp oil synthesis is saturated, and loose fruits are beginning to abscise (drop off). This zero-growth plateau mathematically proves that keeping the bunch on the tree any longer yields zero additional oil, but risks acid rot. HARVEST NOW!`;
+                layman = `HARVEST TIME! The bunch weight has completely flattened out (growing less than ${derivative.toFixed(2)} kg/week) and the fruits are fiery orange-red. The palm oil inside is at its absolute maximum peak! If you harvest now, you get the highest profit. If you wait, ripe fruits will fall off and rot.`;
+            }
+
+            return { bio, layman };
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            const dataPoints = getChartDataPoints(activePreset);
+            const p = PRESETS[activePreset];
+
+            // Custom cursor line plugin that traces active selectedWeek
+            const selectedWeekLinePlugin = {
+                id: 'selectedWeekLine',
+                afterDraw: (chart) => {
+                    const activeWeek = window.selectedWeek;
+                    const xScale = chart.scales.x;
+                    const xPos = xScale.getPixelForValue(activeWeek);
+                    
+                    if (xPos >= chart.chartArea.left && xPos <= chart.chartArea.right) {
+                        const topY = chart.chartArea.top;
+                        const bottomY = chart.chartArea.bottom;
+                        const ctx = chart.ctx;
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.moveTo(xPos, topY);
+                        ctx.lineTo(xPos, bottomY);
+                        ctx.lineWidth = 2;
+                        ctx.strokeStyle = '#10b981'; // emerald green indicator
+                        ctx.setLineDash([5, 4]);
+                        ctx.stroke();
+                        
+                        // Draw point markers on both curves for visual clarity
+                        const yScaleLeft = chart.scales.y;
+                        const yScaleRight = chart.scales.y1;
+                        const wVal = calculateWeight(activeWeek, p.L, p.k, p.t0);
+                        const rVal = calculateGrowthRate(activeWeek, p.L, p.k, p.t0);
+
+                        // Draw weight point
+                        ctx.beginPath();
+                        ctx.arc(xPos, yScaleLeft.getPixelForValue(wVal), 6, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#10b981';
+                        ctx.stroke();
+                        ctx.fill();
+
+                        // Draw rate point
+                        ctx.beginPath();
+                        ctx.arc(xPos, yScaleRight.getPixelForValue(rVal), 6, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#818cf8';
+                        ctx.stroke();
+                        ctx.fill();
+
+                        ctx.restore();
+                    }
+                }
+            };
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dataPoints.weeks,
+                    datasets: [
+                        {
+                            label: 'FFB Weight f(t) (kg)',
+                            data: dataPoints.weights,
+                            borderColor: '#10b981',
+                            borderWidth: 3.5,
+                            yAxisID: 'y',
+                            pointRadius: 0,
+                            tension: 0.1
+                        },
+                        {
+                            label: "Growth Rate f'(t) (kg/wk)",
+                            data: dataPoints.growthRates,
+                            borderColor: '#818cf8',
+                            borderWidth: 2.5,
+                            borderDash: [2, 2],
+                            yAxisID: 'y1',
+                            pointRadius: 0,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Handled in custom UI top bar
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            titleColor: '#10b981',
+                            bodyColor: '#f8fafc',
+                            borderColor: 'rgba(16, 185, 129, 0.2)',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toFixed(2);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            min: 0,
+                            max: 20,
+                            title: {
+                                display: true,
+                                text: 'Time After Anthesis (Weeks)',
+                                color: '#94a3b8',
+                                font: {
+                                    weight: 'bold',
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(51, 65, 85, 0.3)'
+                            },
+                            ticks: {
+                                color: '#94a3b8'
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            min: 0,
+                            max: 32,
+                            title: {
+                                display: true,
+                                text: 'FFB Weight (kg)',
+                                color: '#10b981',
+                                font: {
+                                    weight: 'bold',
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(51, 65, 85, 0.1)'
+                            },
+                            ticks: {
+                                color: '#10b981'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            min: 0,
+                            max: 5,
+                            title: {
+                                display: true,
+                                text: 'Growth Rate (kg/Week)',
+                                color: '#818cf8',
+                                font: {
+                                    weight: 'bold',
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                drawOnChartArea: false // prevent grid line crossing
+                            },
+                            ticks: {
+                                color: '#818cf8'
+                            }
+                        }
+                    },
+                    onClick: (e) => {
+                        // Click target calculation: mapping x click pixels directly to Week x-axis coordinate value
+                        const points = chartInstance.getElementsAtEventForMode(e, 'nearest', { intersect: false }, true);
+                        const canvasPosition = Chart.helpers.getRelativePosition(e, chartInstance);
+                        const clickedXValue = chartInstance.scales.x.getValueForPixel(canvasPosition.x);
+                        
+                        if (clickedXValue >= 0 && clickedXValue <= 20) {
+                            // Bound and round click coordinates
+                            const cleanWeek = Math.round(clickedXValue * 10) / 10;
+                            document.getElementById("weekSlider").value = cleanWeek;
+                            updateDashboard(cleanWeek);
+                        }
+                    }
+                },
+                plugins: [selectedWeekLinePlugin]
+            });
+        }
+
+        function updateDashboard(week) {
+            window.selectedWeek = parseFloat(week);
+            const p = PRESETS[activePreset];
+
+            // 1. Calculate the biological formulas at selected week
+            const weight = calculateWeight(week, p.L, p.k, p.t0);
+            const rate = calculateGrowthRate(week, p.L, p.k, p.t0);
+
+            // 2. Update the layout text numbers
+            document.getElementById("val-week-label").innerText = week.toFixed(1);
+            document.querySelectorAll(".curr-week").forEach(el => el.innerText = week.toFixed(1));
+            document.getElementById("calc-weight").innerText = weight.toFixed(2);
+            document.getElementById("calc-rate").innerText = rate.toFixed(2);
+
+            // 3. Re-draw the visual growing bunch scale and coloration
+            updateBunchVisualization(week, weight, p.L);
+
+            // 4. Update dynamic physiological text explanations
+            const textData = getDynamicInterpretations(week, activePreset);
+            document.getElementById("bio-insight").innerText = textData.bio;
+            document.getElementById("layman-explanation").innerText = textData.layman;
+
+            // 5. Force redraw the Chart cursor line plugin
+            if (chartInstance) {
+                chartInstance.update('none'); // redraw without full layout re-computation (super fluid)
+            }
+        }
+
+        // Toggle presets
+        function setPreset(presetKey) {
+            activePreset = presetKey;
+            
+            // Adjust active CSS states on preset selector buttons
+            const buttons = ['standard', 'elnino', 'precision'];
+            buttons.forEach(key => {
+                const btn = document.getElementById(`btn-${key}`);
+                const badge = btn.querySelector("span");
+                if (key === presetKey) {
+                    btn.className = `w-full text-left p-3.5 rounded-xl border border-${getPresetColor(key)}-500 bg-${getPresetColor(key)}-500/5 text-${getPresetColor(key)}-300 transition-all flex justify-between items-center group`;
+                    badge.innerText = "Active";
+                    badge.className = `text-xs font-mono font-bold px-2 py-1 bg-${getPresetColor(key)}-500/20 rounded`;
+                } else {
+                    btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 hover:bg-slate-800/40 transition-all flex justify-between items-center group";
+                    badge.innerText = "Select";
+                    badge.className = "text-xs font-mono font-bold px-2 py-1 bg-slate-850 rounded";
+                }
+            });
+
+            // Re-calculate the primary graphs
+            const newData = getChartDataPoints(activePreset);
+            chartInstance.data.datasets[0].data = newData.weights;
+            chartInstance.data.datasets[1].data = newData.growthRates;
+            
+            // Adjust the Chart border color styles to represent theme
+            const colorTheme = getPresetColorHex(activePreset);
+            chartInstance.data.datasets[0].borderColor = colorTheme;
+
+            // Update parameters
+            updateDashboard(selectedWeek);
+        }
+
+        // Color helper functions for Tailwind and Chart.js integration
+        function getPresetColor(key) {
+            if (key === 'standard') return 'emerald';
+            if (key === 'elnino') return 'orange';
+            return 'cyan';
+        }
+
+        function getPresetColorHex(key) {
+            if (key === 'standard') return '#10b981'; // emerald-500
+            if (key === 'elnino') return '#f97316'; // orange-500
+            return '#06b6d4'; // cyan-500
+        }
+
+        // Attach event listeners
+        window.onload = function() {
+            initChart();
+            
+            // Wire range slider inputs
+            const slider = document.getElementById("weekSlider");
+            slider.addEventListener("input", function(e) {
+                updateDashboard(parseFloat(e.target.value));
+            });
+
+            // Initialize baseline update state on week 11.0 (inflection point)
+            updateDashboard(11.0);
+        };
+    </script>
+</body>
+</html>
